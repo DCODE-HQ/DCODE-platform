@@ -3,6 +3,7 @@ import Signup from '../pages/Signup/Signup';
 import WaitList from '../pages/Waitlist/WaitList';
 import Home from '../pages/Home/Home';
 import Dashboard from "../pages/Dashboard/Dashboard"
+import Contact from "../pages/Contact/Contact"
 
 export const routes = createBrowserRouter([
   // {
@@ -13,16 +14,20 @@ export const routes = createBrowserRouter([
     path: '/',
     element: <WaitList />
   },
-  // {
-  //   path: '/home',
-  //   element: <Home />
-  // },
-  // {
-  //   path: '/signup',
-  //   element: <Signup />
-  // },
-  // {
-  //   path:"/dashboard",
-  //   element:<Dashboard/>
-  // }
+  {
+    path: '/home',
+    element: <Home />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+  {
+    path:"/dashboard",
+    element:<Dashboard/>
+  },
+  {
+    path: "/contact",
+    element: <Contact />
+  }
 ]);

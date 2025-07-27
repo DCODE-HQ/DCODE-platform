@@ -1,9 +1,9 @@
-import AppLayout from '../../components/layout/AppLayout/AppLayout';
+import HomeLayout from '../../components/layout/HomeLayout/HomeLayout';
 
 const Home = () => {
   return (
     <>
-      <AppLayout />
+      <HomeLayout />
     </>
   );
 };
