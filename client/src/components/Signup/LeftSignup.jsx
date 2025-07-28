@@ -1,4 +1,4 @@
-import Illustration from '../../../public/images/illustration1.png';
+import Illustration from '../../../public/images/Illustration1.png';
 
 export default function LeftSignup() {
   return (
@@ -33,7 +33,7 @@ export default function LeftSignup() {
                 rgba(0, 0, 0, 0) 50%,
                 rgba(18, 18, 18, 1) 100%
               )
-            `,
+            `
           }}
         />
       </div>

@@ -11,7 +11,7 @@ export default function NavBar() {
         {['Home', 'About', 'Timeline', 'Sponsor Us', 'Contact'].map(link => (
           <Link
             key={link}
-            to="/"
+            to={`/${link.toLowerCase()}`}
             className="relative text-white after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-lime-400 after:transition-transform after:duration-300 hover:after:scale-x-100"
           >
             {link}

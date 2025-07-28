@@ -5,9 +5,9 @@ import Hero from '../../Hero/Hero';
 import Benefits from '../../Benefits/Benefits';
 import About from '../../About/About';
 import Timeline from '../../Timeline/Timeline';
-import Contact from '../../Contact/Contact';
+import Contact from '../../ContactSection/ContactSection';
 import Reviews from '../../Reviews/Reviews';
-const AppLayout = () => {
+const HomeLayout = () => {
   return (
     <>
       <NavBar />
@@ -23,4 +23,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default HomeLayout;
