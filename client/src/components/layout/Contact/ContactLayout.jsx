@@ -5,7 +5,7 @@ const ContactLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-      <div className="flex-1 mt-3 mx-0">
+      <div className="flex-1">
         <ContactPage />
       </div>
     </div>

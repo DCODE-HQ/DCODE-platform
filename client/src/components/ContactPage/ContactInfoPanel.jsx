@@ -10,14 +10,14 @@ const ContactInfoPanel = () => {
   ];
 
   return (
-    <div className="text-white flex flex-col justify-center h-full w-full md:w-1/2 p-6 md:p-8 overflow-y-auto">
-      <div className="relative z-10 max-w-lg mx-auto">
+    <div className="text-white flex flex-col justify-center h-full w-full md:w-1/2 p-6 sm:p-8 overflow-y-auto">
+      <div className="relative z-10 max-w-lg mx-auto md:max-w-md">
         {/* Header Section */}
-        <div className="mb-10">
-          <p className="text-sm font-medium text-gray-400 tracking-widest uppercase mb-4">
+        <div className="space-y-6 mb-10">
+          <p className="text-sm font-medium text-gray-400 tracking-widest uppercase">
             CONTACT US
           </p>
-          <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Get in Touch with Us
           </h1>
           <p className="text-gray-400 text-base leading-relaxed max-w-md">
@@ -27,9 +27,9 @@ const ContactInfoPanel = () => {
         </div>
 
         {/* Features List */}
-        <div className="mb-12">
+        <div className="space-y-4 mb-12">
           {features.map((feature, index) => (
-            <div key={index} className="flex items-center mb-5">
+            <div key={index} className="flex items-center">
               <div className="w-5 h-5 bg-[#7A900F] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                 <Check className="w-3 h-3 text-white font-bold" />
               </div>
@@ -39,23 +39,31 @@ const ContactInfoPanel = () => {
         </div>
 
         {/* Contact Info Section */}
-        <div>
-          <h3 className="text-lg font-semibold text-white mb-4">
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold text-white">
             General Contact Info
           </h3>
-          <div className="space-y-6 text-sm">
+          <div className="space-y-4 text-sm">
             <div>
-              <span className="text-white">Phone: </span>
-              <span className="text-gray-400">
+              <span className="text-white font-medium">Phone: </span>
+              <a
+                href="tel:+919250021256"
+                className="text-gray-400 hover:text-[#7A900F] transition-colors"
+              >
                 +91 92500 21256 (Rohan Singh)
-              </span>
+              </a>
             </div>
             <div>
-              <span className="text-white">Email: </span>
-              <span className="text-gray-400">dcode.codes@gmail.com</span>
+              <span className="text-white font-medium">Email: </span>
+              <a
+                href="mailto:dcode.codes@gmail.com"
+                className="text-gray-400 hover:text-[#7A900F] transition-colors"
+              >
+                dcode.codes@gmail.com
+              </a>
             </div>
             <div>
-              <span className="text-white">Location: </span>
+              <span className="text-white font-medium">Location: </span>
               <span className="text-gray-400">
                 Rishihood University, NH44, Chowk, Bahalgarh, Sonipat, Kishora,
                 Haryana 131001
