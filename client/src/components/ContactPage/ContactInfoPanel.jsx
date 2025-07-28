@@ -23,7 +23,7 @@ const ContactInfoPanel = () => {
             </h1>
             <p className="text-gray-400 text-base leading-relaxed max-w-md">
               We're here to help. Whether you're interested in learning more
-              about our services or need support, we're happy to assist you.
+              about our initiative or need support, we're happy to assist you.
             </p>
           </div>
 
@@ -44,25 +44,22 @@ const ContactInfoPanel = () => {
             <h3 className="text-lg font-semibold text-white mb-4">
               General Contact Info
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-md">
-              We're here to help. Whether you're interested in learning more
-              about our services or need support, we're happy to assist you.
-            </p>
-
-            <div className="space-y-3 text-sm">
+            <div className="space-y-6 text-sm">
               <div>
-                <span className="text-gray-400">Phone: </span>
-                <span className="text-white">+1-415-555-0199</span>
+                <span className="text-white">Phone: </span>
+                <span className="text-gray-400">
+                  +91 92500 21256 (Rohan Singh)
+                </span>
               </div>
               <div>
-                <span className="text-gray-400">Email: </span>
-                <span className="text-white">contact@notifyhub.com</span>
+                <span className="text-white">Email: </span>
+                <span className="text-gray-400">dcode.codes@gmail.com</span>
               </div>
               <div>
-                <span className="text-gray-400">Location: </span>
-                <span className="text-white">
-                  Future Tech Institute 123 Innovation Way, Suite 200 San
-                  Francisco, CA 94107
+                <span className="text-white">Location: </span>
+                <span className="text-gray-400">
+                  Rishihood University, NH44, Chowk, Bahalgarh, Sonipat,
+                  Kishora, Haryana 131001
                 </span>
               </div>
             </div>
