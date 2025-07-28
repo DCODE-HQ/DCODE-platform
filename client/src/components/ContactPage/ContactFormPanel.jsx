@@ -16,13 +16,13 @@ const ContactFormPanel = () => {
 
   const subjectOptions = [
     'Select one',
-    'General Inquiry',
-    'Technical Support',
-    'Sales Question',
-    'Partnership',
-    'Billing Support',
-    'Feature Request',
-    'Bug Report'
+    'Programme Related Inquiry',
+    'Partnership Inquiry',
+    'Sponsorship Request',
+    'Project Collaboration',
+    'General Feedback',
+    'Press or Media Inquiry',
+    'Other'
   ];
 
   const handleInputChange = e => {
@@ -52,13 +52,13 @@ const ContactFormPanel = () => {
   };
 
   return (
-    <div className="ml-30 text-white py-6 px-8 flex flex-col justify-center relative w-full md:w-1/2 p-8 md:p-16 overflow-auto">
+    <div className="text-white flex flex-col justify-center h-full w-full md:w-1/2 p-6 md:p-8 overflow-y-auto">
       <div className="relative z-10 max-w-lg w-full mx-auto">
         <div className="space-y-8">
           {/* Name Fields Row */}
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-5">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 First Name
               </label>
               <input
@@ -66,12 +66,12 @@ const ContactFormPanel = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                placeholder="first name"
-                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
+                placeholder="First name"
+                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#7A900F] border-2 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-5">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Last Name
               </label>
               <input
@@ -79,15 +79,15 @@ const ContactFormPanel = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                placeholder="last name"
-                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
+                placeholder="Last name"
+                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#7A900F] border-2 text-sm"
               />
             </div>
           </div>
 
           {/* Email Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-5">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Email Address
             </label>
             <input
@@ -95,21 +95,21 @@ const ContactFormPanel = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="email"
-              className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
+              placeholder="Email"
+              className="w-full px-3 py-2 border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#7A900F] border-2 text-sm"
             />
           </div>
 
           {/* Subject Dropdown */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-5">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Which best describes you?
             </label>
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsSubjectOpen(!isSubjectOpen)}
-                className="w-full px-3 py-2  border-2 border-gray-800 rounded-lg text-left text-white focus:outline-none focus:border-[#7A900F] flex items-center justify-between text-sm"
+                className="w-full px-3 py-2 border-2 border-gray-800 rounded-lg text-left text-white focus:outline-none focus:border-[#7A900F] flex items-center justify-between text-sm"
               >
                 <span
                   className={
@@ -121,7 +121,9 @@ const ContactFormPanel = () => {
                   {formData.subject}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-gray-400 transition-transform ${isSubjectOpen ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 text-gray-400 transition-transform ${
+                    isSubjectOpen ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
 
@@ -136,7 +138,11 @@ const ContactFormPanel = () => {
                         formData.subject === option
                           ? 'bg-gray-700'
                           : 'text-white'
-                      } ${index === 0 ? 'rounded-t-lg' : ''} ${index === subjectOptions.length - 1 ? 'rounded-b-lg' : ''}`}
+                      } ${index === 0 ? 'rounded-t-lg' : ''} ${
+                        index === subjectOptions.length - 1
+                          ? 'rounded-b-lg'
+                          : ''
+                      }`}
                     >
                       {option}
                     </button>
@@ -148,7 +154,7 @@ const ContactFormPanel = () => {
 
           {/* Message Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-5">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Message
             </label>
             <textarea
@@ -156,8 +162,8 @@ const ContactFormPanel = () => {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="Write your message"
-              rows={9}
-              className="w-full px-3 py-2.5 border-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F]  resize-none text-sm"
+              rows={6}
+              className="w-full px-3 py-2 border-2 border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#7A900F] resize-none text-sm"
             />
           </div>
 
