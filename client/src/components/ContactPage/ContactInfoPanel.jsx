@@ -12,8 +12,6 @@ const ContactInfoPanel = () => {
   return (
     <>
       <div className="  text-white  flex flex-col justify-center relative h-full w-full md:w-1/2 p-8 md:p-16 overflow-auto">
-        {/* Subtle green glow effect */}
-
         <div className="relative z-10 max-w-lg">
           {/* Header Section */}
           <div className="mb-10">
@@ -33,8 +31,8 @@ const ContactInfoPanel = () => {
           <div className="mb-12">
             {features.map((feature, index) => (
               <div key={index} className="flex items-center mb-5">
-                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <Check className="w-3 h-3 text-black font-bold" />
+                <div className="w-5 h-5 bg-[#7A900F] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <Check className="w-3 h-3 text-white font-bold" />
                 </div>
                 <span className="text-white font-medium">{feature}</span>
               </div>

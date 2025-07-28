@@ -52,13 +52,13 @@ const ContactFormPanel = () => {
   };
 
   return (
-    <div className=" text-white py-6 px-8 flex flex-col justify-center relative w-full md:w-1/2 p-8 md:p-16 overflow-auto">
+    <div className="ml-30 text-white py-6 px-8 flex flex-col justify-center relative w-full md:w-1/2 p-8 md:p-16 overflow-auto">
       <div className="relative z-10 max-w-lg w-full mx-auto">
-        <div className="space-y-3">
+        <div className="space-y-8">
           {/* Name Fields Row */}
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-300 mb-5">
                 First Name
               </label>
               <input
@@ -66,12 +66,12 @@ const ContactFormPanel = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                placeholder="About"
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors text-sm"
+                placeholder="first name"
+                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-300 mb-5">
                 Last Name
               </label>
               <input
@@ -79,15 +79,15 @@ const ContactFormPanel = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                placeholder="Squarelo"
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors text-sm"
+                placeholder="last name"
+                className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
               />
             </div>
           </div>
 
           {/* Email Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-5">
               Email Address
             </label>
             <input
@@ -95,36 +95,21 @@ const ContactFormPanel = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="abhort@squarelo.com"
-              className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors text-sm"
-            />
-          </div>
-
-          {/* Company Name Field */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
-              Company Name
-            </label>
-            <input
-              type="text"
-              name="companyName"
-              value={formData.companyName}
-              onChange={handleInputChange}
-              placeholder="Name company"
-              className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors text-sm"
+              placeholder="email"
+              className="w-full px-3 py-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F] border-2 text-sm"
             />
           </div>
 
           {/* Subject Dropdown */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-5">
               Which best describes you?
             </label>
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsSubjectOpen(!isSubjectOpen)}
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-left text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors flex items-center justify-between text-sm"
+                className="w-full px-3 py-2  border-2 border-gray-800 rounded-lg text-left text-white focus:outline-none focus:border-[#7A900F] flex items-center justify-between text-sm"
               >
                 <span
                   className={
@@ -149,7 +134,7 @@ const ContactFormPanel = () => {
                       onClick={() => handleSubjectSelect(option)}
                       className={`w-full px-3 py-2 text-left hover:bg-gray-700 transition-colors text-sm ${
                         formData.subject === option
-                          ? 'bg-gray-700 text-green-400'
+                          ? 'bg-gray-700'
                           : 'text-white'
                       } ${index === 0 ? 'rounded-t-lg' : ''} ${index === subjectOptions.length - 1 ? 'rounded-b-lg' : ''}`}
                     >
@@ -163,7 +148,7 @@ const ContactFormPanel = () => {
 
           {/* Message Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-5">
               Message
             </label>
             <textarea
@@ -171,8 +156,8 @@ const ContactFormPanel = () => {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="Write your message"
-              rows={3}
-              className="w-full px-3 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors resize-none text-sm"
+              rows={9}
+              className="w-full px-3 py-2.5 border-2 border-gray-800 rounded-lg text-white  focus:outline-none focus:border-[#7A900F]  resize-none text-sm"
             />
           </div>
 
@@ -184,21 +169,21 @@ const ContactFormPanel = () => {
                 id="terms"
                 checked={agreedToTerms}
                 onChange={e => setAgreedToTerms(e.target.checked)}
-                className="w-4 h-4 text-green-500 bg-gray-800 border-gray-600 rounded focus:ring-green-500 focus:ring-2"
+                className="w-4 h-4 text-[#7A900F] bg-gray-800 border-gray-600 rounded focus:ring-[#7A900F]/80 focus:ring-2 accent-[#7A900F]"
               />
             </div>
             <label htmlFor="terms" className="text-xs text-gray-400 leading-4">
               I agree to Pixsellz{' '}
               <a
                 href="#"
-                className="text-green-400 hover:text-green-300 underline"
+                className="text-[#7A900F] hover:text-[#7A900F]/80 underline"
               >
                 Terms of Use
               </a>{' '}
               and{' '}
               <a
                 href="#"
-                className="text-green-400 hover:text-green-300 underline"
+                className="text-[#7A900F] hover:text-[#7A900F]/80 underline"
               >
                 Privacy Policy
               </a>
@@ -209,7 +194,7 @@ const ContactFormPanel = () => {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 text-sm"
+            className="w-full bg-[#7A900F]/80 hover:bg-[#7A900F] text-white font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#7A900F]/80 focus:ring-offset-2 focus:ring-offset-gray-900 text-sm"
           >
             Submit
           </button>
