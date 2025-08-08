@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
+const brandGreen = '#7A900F';
+
 const ContactFormPanel = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -65,20 +67,19 @@ const ContactFormPanel = () => {
       return;
     }
     if (!agreedToTerms) {
-      alert('Please agree to the Terms of Use and Privacy Policy');
+      setToast({
+        show: true,
+        message: 'Please agree to the terms and conditions.',
+        isError: true
+      });
+      setTimeout(
+        () => setToast({ show: false, message: '', isError: false }),
+        3000
+      );
       return;
     }
     setIsSubmitting(true);
     try {
-      // Simulate API call with 2-second delay and 20% chance of failure
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.2
-            ? resolve()
-            : reject(new Error('Simulated failure'));
-        }, 2000);
-      });
-      console.log('Form submitted:', formData);
       setToast({
         show: true,
         message: 'Message sent successfully!',
@@ -97,7 +98,7 @@ const ContactFormPanel = () => {
         () => setToast({ show: false, message: '', isError: false }),
         3000
       );
-    } catch (error) {
+    } catch {
       setToast({
         show: true,
         message: 'Failed to send message. Please try again.',
@@ -119,10 +120,10 @@ const ContactFormPanel = () => {
           <div
             role="alert"
             aria-live="polite"
-            className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg transition-opacity duration-300 ${
+            className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg transition-opacity duration-300 text-sm sm:text-base ${
               toast.isError
                 ? 'bg-red-500/90 text-white'
-                : 'bg-[#7A900F]/90 text-white'
+                : 'bg-[#A1B80F]/90 text-white'
             } ${toast.show ? 'opacity-100' : 'opacity-0'}`}
           >
             {toast.message}
@@ -131,60 +132,30 @@ const ContactFormPanel = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name Fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-300 mb-2"
-              >
-                First Name
-              </label>
-              <input
-                id="firstName"
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                placeholder="first name"
-                className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:border-[#7A900F] text-sm ${
-                  errors.firstName ? 'border-red-500' : 'border-gray-800'
-                }`}
-                aria-describedby={
-                  errors.firstName ? 'firstName-error' : undefined
-                }
-              />
-              {errors.firstName && (
-                <p id="firstName-error" className="text-red-500 text-xs mt-1">
-                  {errors.firstName}
-                </p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-300 mb-2"
-              >
-                Last Name
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                placeholder="last name"
-                className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:border-[#7A900F] text-sm ${
-                  errors.lastName ? 'border-red-500' : 'border-gray-800'
-                }`}
-                aria-describedby={
-                  errors.lastName ? 'lastName-error' : undefined
-                }
-              />
-              {errors.lastName && (
-                <p id="lastName-error" className="text-red-500 text-xs mt-1">
-                  {errors.lastName}
-                </p>
-              )}
-            </div>
+            {['firstName', 'lastName'].map((field, idx) => (
+              <div key={field}>
+                <label
+                  htmlFor={field}
+                  className="block text-sm font-medium text-gray-300 mb-2 capitalize"
+                >
+                  {field.replace(/([A-Z])/g, ' $1')}
+                </label>
+                <input
+                  id={field}
+                  type="text"
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleInputChange}
+                  placeholder={field.replace(/([A-Z])/g, ' $1').toLowerCase()}
+                  className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] text-sm ${
+                    errors[field] ? 'border-red-500' : 'border-gray-800'
+                  }`}
+                />
+                {errors[field] && (
+                  <p className="text-red-500 text-xs mt-1">{errors[field]}</p>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Email Field */}
@@ -202,15 +173,12 @@ const ContactFormPanel = () => {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="email"
-              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:border-[#7A900F] text-sm ${
+              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] text-sm ${
                 errors.email ? 'border-red-500' : 'border-gray-800'
               }`}
-              aria-describedby={errors.email ? 'email-error' : undefined}
             />
             {errors.email && (
-              <p id="email-error" className="text-red-500 text-xs mt-1">
-                {errors.email}
-              </p>
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
             )}
           </div>
 
@@ -228,8 +196,7 @@ const ContactFormPanel = () => {
                 type="button"
                 onClick={() => setIsSubjectOpen(!isSubjectOpen)}
                 aria-expanded={isSubjectOpen}
-                aria-label="Select inquiry type"
-                className={`w-full px-3 py-2 border-2 rounded-lg text-left text-white focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:border-[#7A900F] flex items-center justify-between text-sm ${
+                className={`w-full px-3 py-2 border-2 rounded-lg text-left text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] flex items-center justify-between text-sm ${
                   errors.subject ? 'border-red-500' : 'border-gray-800'
                 }`}
               >
@@ -247,9 +214,7 @@ const ContactFormPanel = () => {
                 />
               </button>
               {errors.subject && (
-                <p id="subject-error" className="text-red-500 text-xs mt-1">
-                  {errors.subject}
-                </p>
+                <p className="text-red-500 text-xs mt-1">{errors.subject}</p>
               )}
               {isSubjectOpen && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50 max-h-48 overflow-y-auto">
@@ -262,10 +227,6 @@ const ContactFormPanel = () => {
                         formData.subject === option
                           ? 'bg-gray-700 text-white'
                           : 'text-white'
-                      } ${index === 0 ? 'rounded-t-lg' : ''} ${
-                        index === subjectOptions.length - 1
-                          ? 'rounded-b-lg'
-                          : ''
                       }`}
                     >
                       {option}
@@ -290,44 +251,32 @@ const ContactFormPanel = () => {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="Write your message"
-              rows={window.innerWidth < 640 ? 4 : 6}
-              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:border-[#7A900F] resize-none text-sm ${
+              rows={4}
+              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] resize-none text-sm ${
                 errors.message ? 'border-red-500' : 'border-gray-800'
               }`}
-              aria-describedby={errors.message ? 'message-error' : undefined}
             />
             {errors.message && (
-              <p id="message-error" className="text-red-500 text-xs mt-1">
-                {errors.message}
-              </p>
+              <p className="text-red-500 text-xs mt-1">{errors.message}</p>
             )}
           </div>
 
           {/* Terms Checkbox */}
           <div className="flex items-start space-x-3">
-            <div className="flex items-center h-5">
-              <input
-                id="terms"
-                type="checkbox"
-                checked={agreedToTerms}
-                onChange={e => setAgreedToTerms(e.target.checked)}
-                className="w-4 h-4 text-[#7A900F] bg-gray-800 border-gray-600 rounded focus:ring-2 focus:ring-[#7A900F]/80 accent-[#7A900F]"
-                aria-describedby="terms-error"
-              />
-            </div>
+            <input
+              id="terms"
+              type="checkbox"
+              checked={agreedToTerms}
+              onChange={e => setAgreedToTerms(e.target.checked)}
+              className="w-4 h-4 text-[#7A900F] bg-gray-800 border-gray-600 rounded focus:ring-2 focus:ring-[#7A900F] accent-[#7A900F]"
+            />
             <label htmlFor="terms" className="text-xs text-gray-400 leading-4">
-              I agree to Pixsellz{' '}
-              <a
-                href="#"
-                className="text-[#7A900F] hover:text-[#7A900F]/80 underline"
-              >
+              I agree to DCODE’s{' '}
+              <a href="#" className="text-[#7A900F] hover:underline">
                 Terms of Use
               </a>{' '}
               and{' '}
-              <a
-                href="#"
-                className="text-[#7A900F] hover:text-[#7A900F]/80 underline"
-              >
+              <a href="#" className="text-[#7A900F]hover:underline">
                 Privacy Policy
               </a>
             </label>
@@ -337,7 +286,7 @@ const ContactFormPanel = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-[#7A900F]/80 hover:bg-[#7A900F] text-white font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#7A900F]/80 focus:ring-offset-2 focus:ring-offset-gray-900 text-sm sticky bottom-4 sm:static ${
+            className={`w-full bg-[${brandGreen}]/80 hover:bg-[${brandGreen}] text-white font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:ring-offset-2 focus:ring-offset-gray-900 text-sm ${
               isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >

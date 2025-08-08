@@ -53,7 +53,7 @@ const About = () => {
         { name: 'Rohan Singh', score: 1000 },
         { name: 'Aryan Vibhuti', score: 920 }
       ]
-    },
+    }
   ];
 
   const [activePhase, setActivePhase] = useState(phases[2]);
@@ -99,7 +99,7 @@ const About = () => {
 
   return (
     <section className="w-full px-6 md:px-16 bg-black text-center mb-24 p-16">
-      <div className="max-w-3xl mx-auto mb-16">
+      <div id="about" className="max-w-3xl mx-auto mb-16">
         <h3 className="text-green-500 text-sm tracking-widest mb-8">
           MADE ACCESSIBLE
         </h3>
