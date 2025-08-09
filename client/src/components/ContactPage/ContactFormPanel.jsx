@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const brandGreen = '#7A900F';
-
 const ContactFormPanel = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -113,6 +111,14 @@ const ContactFormPanel = () => {
     }
   };
 
+  // Fixed input class logic with proper border styling
+  const inputClasses = hasError =>
+    `w-full px-3 py-2 border-2 rounded-lg text-white bg-transparent focus:outline-none text-sm transition-colors ${
+      hasError
+        ? 'border-red-500 focus:border-red-500'
+        : 'border-gray-800 focus:border-[#7A900F]'
+    }`;
+
   return (
     <div className="text-white flex flex-col justify-center h-full w-full md:w-1/2 p-6 sm:p-8 overflow-y-auto max-h-[calc(100vh-80px)]">
       <div className="relative z-10 max-w-lg w-full mx-auto md:max-w-md">
@@ -120,19 +126,20 @@ const ContactFormPanel = () => {
           <div
             role="alert"
             aria-live="polite"
-            className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg transition-opacity duration-300 text-sm sm:text-base ${
+            className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg transition-opacity duration-300 text-sm sm:text-base z-50 ${
               toast.isError
                 ? 'bg-red-500/90 text-white'
-                : 'bg-[#A1B80F]/90 text-white'
-            } ${toast.show ? 'opacity-100' : 'opacity-0'}`}
+                : 'bg-[#7A900F] text-white'
+            }`}
           >
             {toast.message}
           </div>
         )}
-        <form onSubmit={handleSubmit} className="space-y-6">
+
+        <div className="space-y-6">
           {/* Name Fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {['firstName', 'lastName'].map((field, idx) => (
+            {['firstName', 'lastName'].map(field => (
               <div key={field}>
                 <label
                   htmlFor={field}
@@ -147,9 +154,7 @@ const ContactFormPanel = () => {
                   value={formData[field]}
                   onChange={handleInputChange}
                   placeholder={field.replace(/([A-Z])/g, ' $1').toLowerCase()}
-                  className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] text-sm ${
-                    errors[field] ? 'border-red-500' : 'border-gray-800'
-                  }`}
+                  className={inputClasses(errors[field])}
                 />
                 {errors[field] && (
                   <p className="text-red-500 text-xs mt-1">{errors[field]}</p>
@@ -158,7 +163,7 @@ const ContactFormPanel = () => {
             ))}
           </div>
 
-          {/* Email Field */}
+          {/* Email */}
           <div>
             <label
               htmlFor="email"
@@ -173,9 +178,7 @@ const ContactFormPanel = () => {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="email"
-              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] text-sm ${
-                errors.email ? 'border-red-500' : 'border-gray-800'
-              }`}
+              className={inputClasses(errors.email)}
             />
             {errors.email && (
               <p className="text-red-500 text-xs mt-1">{errors.email}</p>
@@ -196,9 +199,7 @@ const ContactFormPanel = () => {
                 type="button"
                 onClick={() => setIsSubjectOpen(!isSubjectOpen)}
                 aria-expanded={isSubjectOpen}
-                className={`w-full px-3 py-2 border-2 rounded-lg text-left text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] flex items-center justify-between text-sm ${
-                  errors.subject ? 'border-red-500' : 'border-gray-800'
-                }`}
+                className={`${inputClasses(errors.subject)} flex items-center justify-between`}
               >
                 <span
                   className={
@@ -237,7 +238,7 @@ const ContactFormPanel = () => {
             </div>
           </div>
 
-          {/* Message Field */}
+          {/* Message */}
           <div>
             <label
               htmlFor="message"
@@ -252,16 +253,14 @@ const ContactFormPanel = () => {
               onChange={handleInputChange}
               placeholder="Write your message"
               rows={4}
-              className={`w-full px-3 py-2 border-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:border-[${brandGreen}] resize-none text-sm ${
-                errors.message ? 'border-red-500' : 'border-gray-800'
-              }`}
+              className={`${inputClasses(errors.message)} resize-none`}
             />
             {errors.message && (
               <p className="text-red-500 text-xs mt-1">{errors.message}</p>
             )}
           </div>
 
-          {/* Terms Checkbox */}
+          {/* Terms */}
           <div className="flex items-start space-x-3">
             <input
               id="terms"
@@ -271,28 +270,29 @@ const ContactFormPanel = () => {
               className="w-4 h-4 text-[#7A900F] bg-gray-800 border-gray-600 rounded focus:ring-2 focus:ring-[#7A900F] accent-[#7A900F]"
             />
             <label htmlFor="terms" className="text-xs text-gray-400 leading-4">
-              I agree to DCODE’s{' '}
+              I agree to DCODE's{' '}
               <a href="#" className="text-[#7A900F] hover:underline">
                 Terms of Use
               </a>{' '}
               and{' '}
-              <a href="#" className="text-[#7A900F]hover:underline">
+              <a href="#" className="text-[#7A900F] hover:underline">
                 Privacy Policy
               </a>
             </label>
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-[${brandGreen}]/80 hover:bg-[${brandGreen}] text-white font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[${brandGreen}] focus:ring-offset-2 focus:ring-offset-gray-900 text-sm ${
+            onClick={handleSubmit}
+            className={`w-full bg-[#7A900F] hover:bg-[#7A900F] text-white font-semibold py-2.5 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#7A900F] focus:ring-offset-2 focus:ring-offset-gray-900 text-sm ${
               isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
