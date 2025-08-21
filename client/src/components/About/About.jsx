@@ -11,14 +11,14 @@ const About = () => {
         'Loved the structure of your PRs — makes reviewing so easy!'
     },
     {
-      initial: 'D',
+      initial: 'R',
       name: 'Rishik',
       role: 'DCODE Maintainer',
       comment:
         'Great job — can you add more test coverage?'
     },
     {
-      initial: 'K',
+      initial: 'A',
       name: 'Aditya Kumar',
       role: 'Tech Mentor, DCODE',
       comment:
@@ -121,8 +121,7 @@ const About = () => {
         {/* Real-World Experience */}
         <div className="bg-[#0B0F0B] border border-[#1D261D] rounded-2xl p-6 flex flex-col text-left h-full w-full max-w-sm mx-auto">
           <h3 className="text-white font-bold text-md mb-2">
-            <span className="text-[#BCDD19] mr-2">&lt;/&gt;</span> Real-World
-            Experience
+            Real-World Experience
           </h3>
           <p className="text-gray-400 mb-6 text-sm">
             Contribute to high-impact repos and write code that ships to
@@ -257,7 +256,7 @@ const About = () => {
                 <button
                   key={phase.name}
                   onClick={() => setActivePhase(phase)}
-                  className={`px-6 py-1 rounded-lg p-3 text-2xs transition-all
+                  className={`px-6 py-1 rounded-lg p-3 text-2xs transition-all cursor-pointer
                     ${
                       activePhase.name === phase.name
                         ? 'bg-[#333D00] border border-[#BCDD19] text-white'
