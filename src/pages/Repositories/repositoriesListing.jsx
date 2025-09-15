@@ -198,13 +198,13 @@ const RepositoriesListing = () => {
                 viewMode === 'grid' ? (
                   <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" variants={containerVariants}>
                     {projects.map((project) => (
-                      <ProjectCardGrid key={project._id} project={project} onClick={(e) => handleRepoClick(project._id, e)} formatDate={formatDate}/>
+                      <ProjectCardGrid key={project.id} project={project} onClick={(e) => handleRepoClick(project.id, e)} formatDate={formatDate}/>
                     ))}
                   </motion.div>
                 ) : (
                   <motion.div className="space-y-4" variants={containerVariants}>
                       {projects.map((project) => (
-                          <ProjectCardList key={project._id} project={project} onClick={(e) => handleRepoClick(project._id, e)} formatDate={formatDate}/>
+                          <ProjectCardList key={project.id} project={project} onClick={(e) => handleRepoClick(project.id, e)} formatDate={formatDate}/>
                       ))}
                   </motion.div>
                 )
